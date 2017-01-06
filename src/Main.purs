@@ -85,11 +85,15 @@ registered = Registered { id: (UserId 20), name: "Registered", email: (Email "re
 -- With custom options, sum types will be encoded as { constructor: "Anonymous", data: {  name: "Anon", id: 10 } }
 -- instead of the default { tag: "Anonymous", contents: {  name: "Anon", id: 10 } }
 customOptions :: Options
-customOptions = defaultOptions { sumEncoding =
+customOptions = { sumEncoding :
   TaggedObject
     { tagFieldName: "constructor"
     , contentsFieldName: "data"
     }
+    -- not sure what this does, but thats the default
+  , unwrapSingleConstructors: false
+    -- not sure what this does, but thats the default
+  , unwrapSingleArguments: true
 }
 
 
